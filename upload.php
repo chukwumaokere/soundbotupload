@@ -10,7 +10,7 @@ if(isset($_POST["submit"])) {
         echo "File is an image - " . $check["mime"] . ". <br>";
         $uploadOk = 1;
     } else {
-        echo "File is not an image. <br>";
+        //echo "File is not an image. <br>";
         $uploadOk = 1;
     }
 }
@@ -35,7 +35,8 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded. <br>";
+	$commandname = str_replace("." . $imageFileType, '', $_FILES["fileToUpload"]["name"]);
+        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded. <br> Your command is !" . $commandname .".";
     } else {
         echo "Sorry, there was an error uploading your file. <br>";
     }
