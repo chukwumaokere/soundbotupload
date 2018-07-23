@@ -1,6 +1,8 @@
 <?php
 $target_dir = "sounds/";
+$target_soundbot_dir = "/home/cokere/DiscordSoundboardbeta2/sounds/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_file_sound = $target_soundbot_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
@@ -15,8 +17,8 @@ if(isset($_POST["submit"])) {
     }
 }
 // Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists. <br>";
+if (file_exists($target_file) || file_exists($target_file_sound)) {
+    echo "Sorry, file already exists. Please try a different command name <br>";
     $uploadOk = 0;
 }
 // Check file size
